@@ -1,0 +1,21 @@
+<div class="column is-full">
+<% @events.each do |event| %>
+  <div class="box">
+    <article class="media">
+      <div class="media-left">
+        <figure class="image is-64x64">
+          <%# <%= gravatar_image_tag(post.user.email, size: 64) %> 
+        </figure>
+      </div>
+      <div class="media-content">
+        <div class="content">
+          <%# <strong><%= event.user.name</strong><br /> %>
+          <%# <small><%= event.user.username</small><br/> %>
+          <p><strong><%= event.title %></strong></p>
+          <p><%= event.description %></p>
+          <p class="creator-text">Host: <%= event.creator.username %></p>
+        </div>
+    </article>
+  </div>
+<% end %>
+</div>
