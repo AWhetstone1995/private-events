@@ -16,8 +16,16 @@
 
  @import "bulma";
 
+.navbar {
+    
+}
+
 .navbar-brand .title {
-    color: white;
+    color: rgb(73, 61, 61);
+}
+
+.box {
+    background-color: rgb(224, 224, 224);
 }
 
 // round images
@@ -39,4 +47,9 @@
 
 .creator-text {
     font-size: large;
+}
+
+.centered-container {
+    width: 20%;
+    margin: 0 auto;
 }

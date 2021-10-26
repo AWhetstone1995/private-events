@@ -41,7 +41,7 @@
                 <%= link_to 'Create Event', new_event_path, class: "button is-info is-inverted" %>
               </p>
               <p class="control">
-                <%= link_to current_user.username, edit_user_registration_path, class: "button is-info" %>
+                <%= link_to current_user.username, current_user, class: "button is-info" %>
               </p>
               <p class="control">
                 <%= link_to "Logout", destroy_user_session_path, method: :delete, class: "button is-info" %>

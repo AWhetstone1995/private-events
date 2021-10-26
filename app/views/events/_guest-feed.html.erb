@@ -1,21 +1,42 @@
 <div class="column is-full">
-<% @events.each do |event| %>
-  <div class="box">
-    <article class="media">
-      <div class="media-left">
-        <figure class="image is-64x64">
-          <%# <%= gravatar_image_tag(post.user.email, size: 64) %> 
-        </figure>
-      </div>
+<h1><strong>Upcoming Events</strong></h1>
+<div class="columns is-multiline">
+  <% @events.where("date > ?", Date.current).each do |event| %>
+    <div class="column is-one-third">
+      <div class="box">
+      <article class="media">
       <div class="media-content">
         <div class="content">
-          <%# <strong><%= event.user.name</strong><br /> %>
-          <%# <small><%= event.user.username</small><br/> %>
-          <p><strong><%= event.title %></strong></p>
+          <p><strong><%= link_to event.title, event_path(event) %></strong></p>
           <p><%= event.description %></p>
           <p class="creator-text">Host: <%= event.creator.username %></p>
+          <p>Date: <%= event.date.strftime("%m/%d/%Y") %></p>
+          <p>Time: <%= event.date.strftime("%H:%M") %></p>
         </div>
     </article>
   </div>
+  </div>
 <% end %>
+</div>
+
+
+<h1><strong>Past Events</strong></h1>
+<div class="columns is-multiline">
+  <% @events.where("date < ?", Date.current).each do |event| %>
+    <div class="column is-one-third">
+      <div class="box">
+      <article class="media">
+      <div class="media-content">
+        <div class="content">
+          <p><strong><%= link_to event.title, event_path(event) %></strong></p>
+          <p><%= event.description %></p>
+          <p class="creator-text">Host: <%= event.creator.username %></p>
+          <p>Date: <%= event.date.strftime("%m/%d/%Y") %></p>
+          <p>Time: <%= event.date.strftime("%H:%M") %></p>
+        </div>
+    </article>
+  </div>
+  </div>
+<% end %>
+</div>
 </div>

@@ -1,24 +1,45 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Title:</strong>
-  <%= @event.title %>
-</p>
+<section class="columns is-centered">
+  <div class="column event is-4">
+    <div class="box">
+      <p>
+        <strong>Title:</strong>
+        <%= @event.title %>
+      </p>
 
-<p>
-  <strong>Description:</strong>
-  <%= @event.description %>
-</p>
+      <p>
+        <strong>Description:</strong>
+        <%= @event.description %>
+      </p>
 
-<p>
-  <strong>Location:</strong>
-  <%= @event.location %>
-</p>
+      <p>
+        <strong>Location:</strong>
+        <%= @event.location %>
+      </p>
 
-<p>
-  <strong>Date:</strong>
-  <%= @event.date %>
-</p>
+      <p>
+        <strong>Date:</strong>
+        <%= @event.date %>
+      </p>
 
-<%= link_to 'Edit', edit_event_path(@event) %> |
-<%= link_to 'Back', events_path %>
+<%= link_to 'Back', root_path %> |
+<% if user_signed_in? %>
+  <% if current_user.username == @event.creator.username %>
+    <%= link_to 'Edit', edit_event_path(@event) %> |
+    <%= link_to 'Cancel Event', event_path, method: :delete, data: { confirm: "Are you sure you want to cancel this event?" } %> |
+  <% else %>
+    <% if current_user.attended_events.include?(@event) %>
+      <%= button_to 'Cancel', rsvp_path(event_id: @event.id), method: :patch %>
+    <% else %>
+      <%= button_to 'RSVP', rsvp_path(event_id: @event.id), method: :patch %>
+    <% end %>
+  <% end %>
+<% end %>
+</div>
+</div>
+</section>
+
+<% @event.attendees.each do |user| %>
+<%= user.username %>
+<% end %>
