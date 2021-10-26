@@ -4,9 +4,9 @@ class RsvpsController < ApplicationController
   def create
     event = Event.find(params[:event_id])
     user = current_user
-    rsvp = Rsvp.new(event_id: event.id, user_id: user.id)
+    @rsvp = Rsvp.new(event_id: event.id, user_id: user.id)
 
-    if rsvp.save
+    if @rsvp.save
       flash[:notice] = "You have succesfully enrolled for the event"
       redirect_to event_path(event)
     else
@@ -16,6 +16,7 @@ class RsvpsController < ApplicationController
   end
 
   def destroy
+    event = Event.find(params[:event_id])
     rsvp = Rsvp.find(params[:id])
     rsvp.destroy
     redirect_to event_path(rsvp.event)
