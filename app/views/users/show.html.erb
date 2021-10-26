@@ -1,26 +1,47 @@
-<div class="columns is-centered">
-<div class="column event is-4">
-  <p><strong>Your Events</strong></p>
-  <% @user.events.each do |event| %>
+<div class="column is-full">
+<h1><strong>Your Upcoming Events</strong></h1>
+<div class="columns is-multiline">
+  <% @user.events.upcoming.each do |event| %>
+    <div class="column is-one-third">
+    <div class="box">
       <p><strong><%= link_to event.title, event_path(event) %></strong></p>
       <p><%= event.location %></p>
       <p><%= event.description%></p>
       <p><%= event.date %></p>
+    </div>
+    </div>
   <% end %>
-  </div>
 </div>
 </div>
 
 <% if @user.attended_events.any? %>
-<div class="column is-half is-offset-5">
-  <p><strong>Upcoming Events</strong></p>
-  <% @user.events.each do |event| %>
-    <div class="column is-half">
+<div class="column  is-full">
+  <h1><strong>Upcoming Events</strong></h1>
+  <div class="columns is-multiline">
+  <% @user.attended_events.upcoming.each do |event| %>
+    <div class="column is-one-third">
+    <div class="box">
       <p><%= event.title %></p>
       <p><%= event.location %></p>
       <p><%= event.description%></p>
       <p><%= event.date %></p>
-    <div>
+     </div>
+    </div> 
   <% end %>
 </div>
-<% end %>
+
+<div class="column  is-full">
+  <h1><strong>Past Events</strong></h1>
+  <div class="columns is-multiline">
+  <% @user.attended_events.past.each do |event| %>
+    <div class="column is-one-third">
+    <div class="box">
+      <p><%= event.title %></p>
+      <p><%= event.location %></p>
+      <p><%= event.description%></p>
+      <p><%= event.date %></p>
+     </div>
+    </div> 
+  <% end %>
+</div>
+<% end %>  
