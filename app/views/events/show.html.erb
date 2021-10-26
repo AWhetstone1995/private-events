@@ -1,5 +1,3 @@
-<p id="notice"><%= notice %></p>
-
 <section class="columns is-centered">
   <div class="column event is-4">
     <div class="box">
@@ -22,20 +20,29 @@
         <strong>Date:</strong>
         <%= @event.date %>
       </p>
-
-<%= link_to 'Back', root_path %> | 
-<% if user_signed_in? %>
-  <% if current_user.username == @event.creator.username %>
-    <%= link_to 'Edit', edit_event_path(@event) %> |
-    <%= link_to 'Cancel Event', event_path, method: :delete, data: { confirm: "Are you sure you want to cancel this event?" } %> |
-  <% else %>
-    <% if current_user.attended_events.include?(@event) %>
-      <%= button_to 'Cancel Attendance', rsvp_path(event_id: @event.id, user_id: current_user.id), method: :patch %>
-    <% else %>
-      <%= button_to 'RSVP', rsvp_path(event_id: @event.id), method: :post %>
+  <section class="field is-grouped">  
+    <p class="control">
+      <%= link_to 'Back', root_path, class: "button is-white" %> 
+    </p>
+    <% if user_signed_in? %>
+      <% if current_user.username == @event.creator.username %>
+          <%= link_to 'Edit', edit_event_path(@event), class: "button is-white" %> 
+        <p class="control">
+          <%= link_to 'Cancel Event', event_path, method: :delete, data: { confirm: "Are you sure you want to cancel this event?" }, class: "button is-white" %>
+        </p>
+      <% else %>
+        <% if current_user.attended_events.include?(@event) %>
+          <p class="control">
+            <%= link_to 'Cancel RSVP', rsvp_path(event_id: @event.id, user_id: current_user.id), method: :delete, class: "button is-white" %>
+          </p>
+        <% else %>
+          <p class="control">
+            <%= button_to 'RSVP', new_rsvp_path(event_id: @event.id), class: "button is-white" %>
+          </p>
+        <% end %>
+      <% end %>
     <% end %>
-  <% end %>
-<% end %>
+  </section>
 </div>
 </div>
 </section>

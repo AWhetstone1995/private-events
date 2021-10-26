@@ -16,9 +16,12 @@
 
  @import "bulma";
 
+ .navbar {
+     background-color:rgb(182, 117, 117)
+ }
 
 .navbar-brand .title {
-    color: rgb(73, 61, 61);
+    color: rgb(252, 248, 248);
 }
 
 .box {
@@ -35,7 +38,7 @@
     }
 }
 
-.notifaction:not(:last-child) {
+.notifaction {
     margin-bottom: 0;
 }
 
