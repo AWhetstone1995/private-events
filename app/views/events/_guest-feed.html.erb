@@ -1,7 +1,7 @@
 <div class="column is-full">
 <h1><strong>Upcoming Events</strong></h1>
 <div class="columns is-multiline">
-  <% @events.where("date > ?", Date.current).each do |event| %>
+  <% @events.upcoming.each do |event| %>
     <div class="column is-one-third">
       <div class="box">
       <article class="media">
@@ -13,16 +13,16 @@
           <p>Date: <%= event.date.strftime("%m/%d/%Y") %></p>
           <p>Time: <%= event.date.strftime("%H:%M") %></p>
         </div>
+        </div>
     </article>
   </div>
   </div>
 <% end %>
 </div>
 
-
 <h1><strong>Past Events</strong></h1>
 <div class="columns is-multiline">
-  <% @events.where("date < ?", Date.current).each do |event| %>
+  <% @events.past.each do |event| %>
     <div class="column is-one-third">
       <div class="box">
       <article class="media">
@@ -33,6 +33,7 @@
           <p class="creator-text">Host: <%= event.creator.username %></p>
           <p>Date: <%= event.date.strftime("%m/%d/%Y") %></p>
           <p>Time: <%= event.date.strftime("%H:%M") %></p>
+        </div>
         </div>
     </article>
   </div>
