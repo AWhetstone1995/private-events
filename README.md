@@ -1,24 +1,19 @@
-# README
+# Private Events - Ruby on Rails
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This is an app that allows users to sign up and create events with titles, description, location, and dates that allows other users to RSVP to. It uses the "devise" gem to handle user authentication and registration. This project demonstrates using many to many relationships and multiple relations with the same models.
 
-Things you may want to cover:
+To view the specs of the project, click on the link below:
+https://www.theodinproject.com/paths/full-stack-ruby-on-rails/courses/ruby-on-rails/lessons/private-events
 
-* Ruby version
+To see the app in action, you can click on the following link:
+https://secure-inlet-22550.herokuapp.com/
 
-* System dependencies
+If you want to run this in your local repository, clone into the directory of your choice and then run the following commands:
 
-* Configuration
+"bundle install"
 
-* Database creation
+"rails db:migrate"
 
-* Database initialization
+"rails server"
 
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+After this, you can find the local server at http://localhost:3000
